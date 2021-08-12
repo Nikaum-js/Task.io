@@ -36,12 +36,15 @@ selectClr.forEach((item) => {
 
       function showTasks(){
         let getLocalStorageData = localStorage.getItem("New Todo");
+
         if(getLocalStorageData == null){
           listArray = [];
         }else{
           listArray = JSON.parse(getLocalStorageData); 
         }
+
         let newLiTag = "";
+
         listArray.forEach((element, index) => {
           newLiTag += `<li>
           <input type="checkbox" name="" id="check__item${index}">
@@ -55,6 +58,7 @@ selectClr.forEach((item) => {
           <i class="fi-rr-trash"  onclick="deleteTask(${index})"></i>
       </li>`;
         });
+        
         todoList.innerHTML = newLiTag;
         inputBox.value = "";
       }
