@@ -1,22 +1,26 @@
-const inputBox =  document.querySelector(".input__box input"),
-todoList = document.querySelector(".list__items ul"),
-selectClr = document.querySelectorAll(".cat__details span"),
-deletBtn = document.querySelector(".fi-rr-trash"),
-addBtn = document.querySelector(".add__btn");
+const inputBox =  document.querySelector(".input__box input");
 let dataClr = "#e74c3c";
+
+todoList = document.querySelector(".list__items ul");
+selectClr = document.querySelectorAll(".cat__details span");
+deletBtn = document.querySelector(".fi-rr-trash");
+addBtn = document.querySelector(".add__btn");
 inputBox.addEventListener("focus", show__cat);
+
 function show__cat(){
     document.querySelector(".cat__details").classList.add("show");
     inputBox.addEventListener('blur',function(){
         document.querySelector(".cat__details").classList.remove("show");
     });
 }
+
 selectClr.forEach((item) => {
   item.addEventListener("click",function(){
       dataClr = String(this.dataset.color);
       console.log(dataClr);
     })
   })
+
     addBtn.onclick = ()=>{ 
         let userEnteredValue = inputBox.value; 
         let getLocalStorageData = localStorage.getItem("New Todo"); 
@@ -29,6 +33,7 @@ selectClr.forEach((item) => {
         localStorage.setItem("New Todo", JSON.stringify(listArray));
         showTasks();
       }
+
       function showTasks(){
         let getLocalStorageData = localStorage.getItem("New Todo");
         if(getLocalStorageData == null){
@@ -53,6 +58,7 @@ selectClr.forEach((item) => {
         todoList.innerHTML = newLiTag;
         inputBox.value = "";
       }
+
       function deleteTask(index){
         let getLocalStorageData = localStorage.getItem("New Todo");
         listArray = JSON.parse(getLocalStorageData);
@@ -60,4 +66,5 @@ selectClr.forEach((item) => {
         localStorage.setItem("New Todo", JSON.stringify(listArray));
         showTasks();
       }
+      
   showTasks();
